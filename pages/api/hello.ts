@@ -24,8 +24,8 @@ export default async function handler(
 
     html = html.replace(/<script(.|\n)*?<\/script>/g, '');
 
-    html = html.replace('<body>', `
-    <body>
+    html = html.replace(/<body(.*)>/, `
+    <body$1>
     <style>
     .highlight {
       --bg: #64ffda;
