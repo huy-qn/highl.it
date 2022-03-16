@@ -20,6 +20,7 @@
 }
 
 .toolbox {
-  flex-basis: 36px;
-  border-top: 1px solid #000;
+  flex-basis: 1rem;
+  background: var(--primary-color);
+  padding: 6px;
 }

@@ -1,8 +1,14 @@
+//@ts-ignore
+const rangy = window.rangy;
 const storageKey = 'highliteUrls';
 const urlHash = window.__contentUrlHash ?? window.location.href;
 
 const getUrlMap = () => {
     return JSON.parse(window.localStorage.getItem(storageKey) ?? '{}');
+}
+
+const isSelection = (input: Selection | null): input is Selection => {
+    return (input as Selection).addRange !== undefined;
 }
 
 window.onload = function() {
@@ -27,23 +33,24 @@ window.onload = function() {
 
         window.addEventListener('mouseup', (event) => {
             const sel = window.getSelection();
-            if (sel.extendOffset !== sel.anchorOffset){
-                highlighter.highlightSelection("highlight");
-                const serialized = highlighter.serialize();
+            if (isSelection(sel)) {
+                if (sel.focusOffset !== sel.anchorOffset){
+                    highlighter.highlightSelection("highlight");
+                    const serialized = highlighter.serialize();
 
-                const urlMap = getUrlMap();
-                if (!urlMap[urlHash]) {
-                    urlMap[urlHash] = '';
+                    const urlMap = getUrlMap();
+                    if (!urlMap[urlHash]) {
+                        urlMap[urlHash] = '';
+                    }
+                    urlMap[urlHash] = serialized;
+                    window.localStorage.setItem(storageKey, JSON.stringify(urlMap));
+
+                    window.getSelection()?.removeAllRanges();
                 }
-                urlMap[urlHash] = serialized;
-                window.localStorage.setItem(storageKey, JSON.stringify(urlMap));
-
-                window.getSelection().removeAllRanges();
             }
         });
 
         const savedUrlMap = getUrlMap()[urlHash];
-        console.log("SAVED URL MAP", savedUrlMap);
         if (savedUrlMap) {
             highlighter.deserialize(savedUrlMap);
         }

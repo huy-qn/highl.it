@@ -25,10 +25,7 @@ const Viewer: NextPage = ({ url }: InferGetServerSidePropsType<typeof getServerS
             </Head>
 
             <iframe className={styles.content} src={`/api/hello?url=${url}`}/>
-            {/*<div className={styles.content}>*/}
-            {/*    <div dangerouslySetInnerHTML={{ __html: content }}></div>*/}
-            {/*</div>*/}
-            <div className={styles.toolbox}>Toolbox</div>
+            <div className={styles.toolbox}>Highlight mode</div>
         </div>
     )
 }

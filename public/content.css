@@ -1,0 +1,14 @@
+:root {
+    --bg: #64ffda;
+    --weight: 3px;
+}
+
+.highlight {
+    background: var(--bg);
+    border-radius: var(--weight);
+    box-shadow: 0 var(--weight) 0 0 var(--bg); /* Border bottom */
+    box-shadow: 0 -var(--weight) 0 0 var(--bg); /* Border top */
+    box-shadow: -var(--weight) 0 0 0 var(--bg); /* Border left */
+    box-shadow: var(--weight) 0 0 0 var(--bg); /* Border right */
+    box-shadow: 0 0 0 var(--weight) var(--bg); /* All the borders by using the spread properties */
+}
