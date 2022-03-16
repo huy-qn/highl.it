@@ -8,6 +8,7 @@ const Index: NextPage = () => {
             <Head>
                 <title>Highlighter Anywhere</title>
                 <link rel="icon" href="/favicon.ico" />
+                <script async defer data-domain="highl.it" src="https://analytics.huy.rocks/js/plausible.js"></script>
             </Head>
 
             <div className={styles.container}>
