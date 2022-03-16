@@ -1,17 +1,13 @@
-//@ts-ignore
-const rangy = window.rangy;
-const storageKey = 'highliteUrls';
-const urlHash = window.__contentUrlHash ?? window.location.href;
+import {getAllHighlightedUrls, getHighlights, setHighlights} from "./database";
 
-const getUrlMap = () => {
-    return JSON.parse(window.localStorage.getItem(storageKey) ?? '{}');
-}
+const rangy = window.rangy;
+const urlHash = window.__contentUrlHash ?? window.location.href;
 
 const isSelection = (input: Selection | null): input is Selection => {
     return (input as Selection).addRange !== undefined;
 }
 
-window.onload = function() {
+window.onload = async function() {
     if (rangy) {
         rangy.init();
         const highlighter = rangy.createHighlighter();
@@ -23,7 +19,7 @@ window.onload = function() {
                 href: "#",
                 onclick: function() {
                     var highlight = highlighter.getHighlightForElement(this);
-                    if (window.confirm("Delete this note (ID " + highlight.id + ")?")) {
+                    if (window.confirm("Delete this highlight? #" + highlight.id)) {
                         highlighter.removeHighlights( [highlight] );
                     }
                     return false;
@@ -37,22 +33,15 @@ window.onload = function() {
                 if (sel.focusOffset !== sel.anchorOffset){
                     highlighter.highlightSelection("highlight");
                     const serialized = highlighter.serialize();
-
-                    const urlMap = getUrlMap();
-                    if (!urlMap[urlHash]) {
-                        urlMap[urlHash] = '';
-                    }
-                    urlMap[urlHash] = serialized;
-                    window.localStorage.setItem(storageKey, JSON.stringify(urlMap));
-
+                    setHighlights(urlHash, serialized);
                     window.getSelection()?.removeAllRanges();
                 }
             }
         });
 
-        const savedUrlMap = getUrlMap()[urlHash];
-        if (savedUrlMap) {
-            highlighter.deserialize(savedUrlMap);
+        const savedHighlights = await getHighlights(urlHash);
+        if (savedHighlights) {
+            highlighter.deserialize(savedHighlights);
         }
     }
 }

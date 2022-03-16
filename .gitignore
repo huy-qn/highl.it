@@ -40,3 +40,5 @@ yarn-error.log*
 .idea
 
 .parcel-cache
+
+public/*.js.map
