@@ -1,11 +1,14 @@
 :root {
     --weight: 3px;
+    --default-font: "Tahoma";
 }
 
 #highlighter-root {
     position: absolute;
     z-index: 99999999;
     visibility: hidden;
+    font-family: var(--default-font);
+    font-size: 16px;
 }
 
 .highlight-red {
@@ -87,12 +90,17 @@
 
 .highlight-color-selector {
     display: block;
-    content: " ";
     width: 32px;
     height: 32px;
     border-radius: 16px;
     cursor: pointer;
     border: 2px solid transparent;
+    font-family: inherit;
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    line-height: 28px;
+    text-align: center;
 }
 
 .highlight-color-selector:hover {
@@ -123,9 +131,6 @@
     background: transparent;
     border-color: #FFFFFF55;
     color: #FFFFFF88;
-    transform: rotate(45deg);
-    font-size: 24px;
-    line-height: 1px;
 }
 
 .highlight-color-selector.clear:hover {

@@ -22,7 +22,7 @@ const HighlighterMenu = () => {
             <button onClick={() => highlightSelection("green")} className={"highlight-color-selector green"}/>
             <button onClick={() => highlightSelection("blue")} className={"highlight-color-selector blue"}/>
             <button onClick={() => highlightSelection("purple")} className={"highlight-color-selector purple"}/>
-            <button onClick={() => clearHighlights()} className={"highlight-color-selector clear"}>+</button>
+            <button onClick={() => clearHighlights()} className={"highlight-color-selector clear"}>&times;</button>
         </div>
     );
 };
