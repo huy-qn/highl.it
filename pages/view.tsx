@@ -2,6 +2,7 @@ import type {InferGetServerSidePropsType, NextPage} from 'next'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import { GetServerSideProps } from 'next'
+import Script from "next/script";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const url = context.query['url'] as string;
@@ -20,7 +21,6 @@ const Viewer: NextPage = ({ url }: InferGetServerSidePropsType<typeof getServerS
             <Head>
                 <title>Highlighter Anywhere</title>
                 <link rel="icon" href="/favicon.ico" />
-                <script async defer data-domain="highl.it" src="https://analytics.huy.rocks/js/plausible.js"></script>
             </Head>
 
             <iframe className={styles.content} src={`/api/hello?url=${url}`}/>
@@ -29,6 +29,8 @@ const Viewer: NextPage = ({ url }: InferGetServerSidePropsType<typeof getServerS
                 <div className={styles.separator}></div>
                 <a href={'#'}>Go to library →</a>
             </div>
+
+            <Script data-domain="highl.it" src="https://analytics.huy.rocks/js/plausible.js"></Script>
         </div>
     )
 }
