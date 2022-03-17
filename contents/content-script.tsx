@@ -78,7 +78,7 @@ window.addEventListener('mouseup', (event) => {
         let range = selection?.getRangeAt(0);
         let position = range?.getBoundingClientRect();
         if (hlRoot && position) {
-            hlRoot.style.top = (position.y + position.height + window.scrollY + hlRoot.offsetHeight / 2) + 'px';
+            hlRoot.style.top = (position.y + position.height + window.scrollY) + 'px';
             hlRoot.style.left = (position.x + (position.width / 2)) + 'px';
             hlRoot.style.visibility = 'visible';
         }

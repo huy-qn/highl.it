@@ -4,14 +4,15 @@
 
 #highlighter-root {
     position: absolute;
-    width: 250px;
-    height: 32px;
+    /*width: 250px;*/
+    /*height: 32px;*/
     z-index: 99999999;
     visibility: hidden;
 }
 
 .highlight-red {
     --bg: #FFCDD2;
+    cursor: pointer;
     background: var(--bg);
     color: currentColor;
     border-radius: var(--weight);
@@ -24,6 +25,7 @@
 
 .highlight-yellow {
     --bg: #FFF9C4;
+    cursor: pointer;
     background: var(--bg);
     color: currentColor;
     border-radius: var(--weight);
@@ -36,6 +38,7 @@
 
 .highlight-green {
     --bg: #A7FFEB;
+    cursor: pointer;
     background: var(--bg);
     color: currentColor;
     border-radius: var(--weight);
@@ -49,6 +52,7 @@
 .highlight-blue {
     --bg: #B3E5FC;
     background: var(--bg);
+    cursor: pointer;
     color: currentColor;
     border-radius: var(--weight);
     box-shadow: 0 var(--weight) 0 0 var(--bg); /* Border bottom */
@@ -60,6 +64,7 @@
 
 .highlight-purple {
     --bg: #D1C4E9;
+    cursor: pointer;
     background: var(--bg);
     color: currentColor;
     border-radius: var(--weight);
@@ -71,8 +76,8 @@
 }
 
 .highlight-menu {
-    width: 200px;
-    height: 100%;
+    /*width: 200px;*/
+    /*height: 100%;*/
     border: 1px solid #E0E0E0;
     background-color: #FFFFFF;
     border-radius: 29px;
