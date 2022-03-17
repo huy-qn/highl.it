@@ -1,12 +1,17 @@
-import { openDB, DBSchema, IDBPDatabase } from 'idb';
+import { openDB, DBSchema } from 'idb';
 
 const DB_VERSION = 1;
 const DB_NAME = 'highlite-db';
 const TABLE_NAME = 'highlights';
 
+interface HighlightValue {
+    highlights: string;
+    notes?: string;
+}
+
 interface HighlightItem {
     key: string;
-    value: string;
+    value: HighlightValue;
 }
 
 interface HighlightsDBSchema extends DBSchema {
@@ -19,14 +24,25 @@ const DB = async () => await openDB<HighlightsDBSchema>(DB_NAME, DB_VERSION, {
     }
 });
 
-export const getHighlights = async (urlHash: string) => {
+export const getHighlights = async (urlHash: string): Promise<HighlightValue | undefined> => {
     const db = await DB();
     return db.get(TABLE_NAME, urlHash);
 };
 
-export const setHighlights = async (urlHash: string, value: string) => {
+export const setHighlights = async (urlHash: string, value: HighlightValue) => {
     const db = await DB();
-    return db.put(TABLE_NAME, value, urlHash);
+    let cursor = await db.transaction(TABLE_NAME, 'readwrite').store.openCursor();
+    while (cursor) {
+        if (cursor.key === urlHash) {
+            const updateData = {
+                ...cursor.value,
+                ...value
+            };
+            cursor.update(updateData);
+            break;
+        }
+        cursor = await cursor.continue();
+    }
 };
 
 export const getAllHighlightedUrls = async (): Promise<string[]> => {

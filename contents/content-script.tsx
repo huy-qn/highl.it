@@ -35,7 +35,9 @@ const highlightUpdated = () => {
     if (hlRoot) hlRoot.style.visibility = 'hidden';
     window.getSelection()?.removeAllRanges();
     const serialized = highlighter?.serialize();
-    setHighlights(urlHash, serialized);
+    setHighlights(urlHash, {
+        highlights: serialized
+    });
 };
 
 window.onload = async function() {
@@ -66,8 +68,8 @@ window.onload = async function() {
         highlighter.addClassApplier(rangy.createClassApplier("highlight-purple", hlOptions));
 
         const savedHighlights = await getHighlights(urlHash);
-        if (savedHighlights) {
-            highlighter.deserialize(savedHighlights);
+        if (savedHighlights?.highlights) {
+            highlighter.deserialize(savedHighlights.highlights);
         }
     }
 };
