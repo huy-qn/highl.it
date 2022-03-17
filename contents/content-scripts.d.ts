@@ -13,6 +13,7 @@ interface RangyHighlighter {
     addClassApplier: (applier: RangyClassApplier) => void;
     getHighlightForElement: (context: any) => RangyHighlightElement;
     removeHighlights: (elements: RangyHighlightElement[]) => void;
+    unhighlightSelection: () => void;
     highlightSelection: (className: string) => void;
     serialize: () => string;
     deserialize: (input: string) => void;

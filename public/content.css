@@ -4,8 +4,6 @@
 
 #highlighter-root {
     position: absolute;
-    /*width: 250px;*/
-    /*height: 32px;*/
     z-index: 99999999;
     visibility: hidden;
 }
@@ -63,7 +61,7 @@
 }
 
 .highlight-purple {
-    --bg: #D1C4E9;
+    --bg: #D1B7FF;
     cursor: pointer;
     background: var(--bg);
     color: currentColor;
@@ -76,15 +74,13 @@
 }
 
 .highlight-menu {
-    /*width: 200px;*/
-    /*height: 100%;*/
-    border: 1px solid #E0E0E0;
-    background-color: #FFFFFF;
+    border: 1px solid #222222;
+    background-color: #000000ee;
+    box-shadow: 0px 2px 2px rgba(34, 34, 34, 0.25);
     border-radius: 29px;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 0.35px 1px 0px, rgba(255, 255, 255, 0.58) 0px 0.5625px 0px 0px inset;
     display: grid;
     grid-gap: 8px;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     padding: 12px;
     margin: 0 auto;
 }
@@ -96,59 +92,43 @@
     height: 32px;
     border-radius: 16px;
     cursor: pointer;
-    border: 1px solid transparent;
+    border: 2px solid transparent;
+}
+
+.highlight-color-selector:hover {
+    border-color: #FFFFFF88;
 }
 
 .highlight-color-selector.red {
-    background: #FFCDD2;
-}
-
-.highlight-color-selector.red:hover {
-    border: 1px solid #FF8A80;
+    background: #FF8A80;
 }
 
 .highlight-color-selector.yellow {
-    background: #FFF9C4;
-}
-
-.highlight-color-selector.yellow:hover {
-    border: 1px solid #FFD740;
+    background: #FFF176;
 }
 
 .highlight-color-selector.green {
-    background: #A7FFEB;
-}
-
-.highlight-color-selector.green:hover {
-    border: 1px solid #1DE9B6;
+    background: #1DE9B6;
 }
 
 .highlight-color-selector.blue {
-    background: #B3E5FC;
-}
-
-.highlight-color-selector.blue:hover {
-    border: 1px solid #40C4FF;
+    background: #40C4FF;
 }
 
 .highlight-color-selector.purple {
-    background: #D1C4E9;
-}
-
-.highlight-color-selector.purple:hover {
-    border: 1px solid #B388FF;
+    background: #B388FF;
 }
 
 .highlight-color-selector.clear {
-    background: #FFF;
-    color: #90A4AE;
-    text-align: center;
-    line-height: 32px;
-    font-size: 22px;
-    border: 1px solid #CFD8DC;
+    background: transparent;
+    border-color: #FFFFFF55;
+    color: #FFFFFF88;
     transform: rotate(45deg);
+    font-size: 24px;
+    line-height: 1px;
 }
 
 .highlight-color-selector.clear:hover {
-    border: 1px solid #90A4AE;
+    border-color: #FFFFFFee;
+    color: #FFFFFF;
 }

@@ -8,7 +8,11 @@ const HighlighterMenu = () => {
     const highlightSelection = (color: string) => {
         highlighter?.highlightSelection(`highlight-${color}`);
         highlightUpdated();
-        window.getSelection()?.removeAllRanges();
+    };
+
+    const clearHighlights = () => {
+        highlighter?.unhighlightSelection();
+        highlightUpdated();
     };
 
     return (
@@ -18,6 +22,7 @@ const HighlighterMenu = () => {
             <button onClick={() => highlightSelection("green")} className={"highlight-color-selector green"}/>
             <button onClick={() => highlightSelection("blue")} className={"highlight-color-selector blue"}/>
             <button onClick={() => highlightSelection("purple")} className={"highlight-color-selector purple"}/>
+            <button onClick={() => clearHighlights()} className={"highlight-color-selector clear"}>+</button>
         </div>
     );
 };
@@ -27,6 +32,8 @@ const rangy = window.rangy;
 const urlHash = window.__contentUrlHash ?? window.location.href;
 
 const highlightUpdated = () => {
+    if (hlRoot) hlRoot.style.visibility = 'hidden';
+    window.getSelection()?.removeAllRanges();
     const serialized = highlighter?.serialize();
     setHighlights(urlHash, serialized);
 };
@@ -66,13 +73,6 @@ window.onload = async function() {
 };
 
 window.addEventListener('mouseup', (event) => {
-    // const sel = window.getSelection();
-    // if (isSelection(sel)) {
-    //     if (sel.focusOffset !== sel.anchorOffset){
-
-    //     }
-    // }
-
     let selection = window.getSelection()
     if (!selection?.isCollapsed) {
         let range = selection?.getRangeAt(0);
