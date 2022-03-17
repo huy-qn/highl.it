@@ -1,5 +1,8 @@
 :root {
   --primary-color: #64ffda;
+  --panel-color: #1DE9B6;
+  --border-color: #26A69A;
+  --link-color: #004D40;
 }
 
 html,
@@ -24,3 +27,11 @@ body {
   box-sizing: border-box;
 }
 
+a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

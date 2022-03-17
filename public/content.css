@@ -1,14 +1,149 @@
 :root {
-    --bg: #64ffda;
     --weight: 3px;
 }
 
-.highlight {
+#highlighter-root {
+    position: absolute;
+    width: 250px;
+    height: 32px;
+    z-index: 99999999;
+    visibility: hidden;
+}
+
+.highlight-red {
+    --bg: #FFCDD2;
     background: var(--bg);
+    color: currentColor;
     border-radius: var(--weight);
     box-shadow: 0 var(--weight) 0 0 var(--bg); /* Border bottom */
     box-shadow: 0 -var(--weight) 0 0 var(--bg); /* Border top */
     box-shadow: -var(--weight) 0 0 0 var(--bg); /* Border left */
     box-shadow: var(--weight) 0 0 0 var(--bg); /* Border right */
     box-shadow: 0 0 0 var(--weight) var(--bg); /* All the borders by using the spread properties */
+}
+
+.highlight-yellow {
+    --bg: #FFF9C4;
+    background: var(--bg);
+    color: currentColor;
+    border-radius: var(--weight);
+    box-shadow: 0 var(--weight) 0 0 var(--bg); /* Border bottom */
+    box-shadow: 0 -var(--weight) 0 0 var(--bg); /* Border top */
+    box-shadow: -var(--weight) 0 0 0 var(--bg); /* Border left */
+    box-shadow: var(--weight) 0 0 0 var(--bg); /* Border right */
+    box-shadow: 0 0 0 var(--weight) var(--bg); /* All the borders by using the spread properties */
+}
+
+.highlight-green {
+    --bg: #A7FFEB;
+    background: var(--bg);
+    color: currentColor;
+    border-radius: var(--weight);
+    box-shadow: 0 var(--weight) 0 0 var(--bg); /* Border bottom */
+    box-shadow: 0 -var(--weight) 0 0 var(--bg); /* Border top */
+    box-shadow: -var(--weight) 0 0 0 var(--bg); /* Border left */
+    box-shadow: var(--weight) 0 0 0 var(--bg); /* Border right */
+    box-shadow: 0 0 0 var(--weight) var(--bg); /* All the borders by using the spread properties */
+}
+
+.highlight-blue {
+    --bg: #B3E5FC;
+    background: var(--bg);
+    color: currentColor;
+    border-radius: var(--weight);
+    box-shadow: 0 var(--weight) 0 0 var(--bg); /* Border bottom */
+    box-shadow: 0 -var(--weight) 0 0 var(--bg); /* Border top */
+    box-shadow: -var(--weight) 0 0 0 var(--bg); /* Border left */
+    box-shadow: var(--weight) 0 0 0 var(--bg); /* Border right */
+    box-shadow: 0 0 0 var(--weight) var(--bg); /* All the borders by using the spread properties */
+}
+
+.highlight-purple {
+    --bg: #D1C4E9;
+    background: var(--bg);
+    color: currentColor;
+    border-radius: var(--weight);
+    box-shadow: 0 var(--weight) 0 0 var(--bg); /* Border bottom */
+    box-shadow: 0 -var(--weight) 0 0 var(--bg); /* Border top */
+    box-shadow: -var(--weight) 0 0 0 var(--bg); /* Border left */
+    box-shadow: var(--weight) 0 0 0 var(--bg); /* Border right */
+    box-shadow: 0 0 0 var(--weight) var(--bg); /* All the borders by using the spread properties */
+}
+
+.highlight-menu {
+    width: 200px;
+    height: 100%;
+    border: 1px solid #E0E0E0;
+    background-color: #FFFFFF;
+    border-radius: 29px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0.35px 1px 0px, rgba(255, 255, 255, 0.58) 0px 0.5625px 0px 0px inset;
+    display: grid;
+    grid-gap: 8px;
+    grid-template-columns: repeat(5, 1fr);
+    padding: 12px;
+    margin: 0 auto;
+}
+
+.highlight-color-selector {
+    display: block;
+    content: " ";
+    width: 32px;
+    height: 32px;
+    border-radius: 16px;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.highlight-color-selector.red {
+    background: #FFCDD2;
+}
+
+.highlight-color-selector.red:hover {
+    border: 1px solid #FF8A80;
+}
+
+.highlight-color-selector.yellow {
+    background: #FFF9C4;
+}
+
+.highlight-color-selector.yellow:hover {
+    border: 1px solid #FFD740;
+}
+
+.highlight-color-selector.green {
+    background: #A7FFEB;
+}
+
+.highlight-color-selector.green:hover {
+    border: 1px solid #1DE9B6;
+}
+
+.highlight-color-selector.blue {
+    background: #B3E5FC;
+}
+
+.highlight-color-selector.blue:hover {
+    border: 1px solid #40C4FF;
+}
+
+.highlight-color-selector.purple {
+    background: #D1C4E9;
+}
+
+.highlight-color-selector.purple:hover {
+    border: 1px solid #B388FF;
+}
+
+.highlight-color-selector.clear {
+    background: #FFF;
+    color: #90A4AE;
+    text-align: center;
+    line-height: 32px;
+    font-size: 22px;
+    border: 1px solid #CFD8DC;
+    transform: rotate(45deg);
+}
+
+.highlight-color-selector.clear:hover {
+    border: 1px solid #90A4AE;
 }

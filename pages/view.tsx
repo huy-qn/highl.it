@@ -24,7 +24,11 @@ const Viewer: NextPage = ({ url }: InferGetServerSidePropsType<typeof getServerS
             </Head>
 
             <iframe className={styles.content} src={`/api/hello?url=${url}`}/>
-            <div className={styles.toolbox}>Highlight mode</div>
+            <div className={styles.toolbox}>
+                <a href={'#'}>← Back to original page</a>
+                <div className={styles.separator}></div>
+                <a href={'#'}>Go to library →</a>
+            </div>
         </div>
     )
 }

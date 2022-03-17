@@ -27,6 +27,7 @@ export default async function handler(
     html = html.replace(/<body(.*)>/, `
     <link href="/content.css" rel="stylesheet" />
     <body$1>
+    <div id="highlighter-root"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/rangy/1.3.0/rangy-core.min.js" integrity="sha512-N+AGrlJCI4ov6LmtY/2SIm8kAcSAp9lhrYhVFmUhMBuFwQy3xEMNj+cPG4bg0N4XkL7Rw2+sKW8hg8v1MF5yLQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/rangy/1.3.0/rangy-classapplier.min.js" integrity="sha512-2Fxf2CgovcFRS+dkK9j68CxEBJfh0ukrHOYigMTR4Dw/y+KWda8Lj2ubH6lXnjprmHf/MCEpF/kP/fSMjrrRRg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/rangy/1.3.0/rangy-selectionsaverestore.min.js" integrity="sha512-40/cVQ39VPjTs1eG+XPt/iFbY+d3FwiH2YbH/nhy1XDr1i1elaxIM1+r7Xy3MMrz/RCsRTYNXKyJEhu/8AGQlg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
