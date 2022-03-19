@@ -1,21 +1,17 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
-import {Readability} from "@mozilla/readability";
-import { JSDOM } from 'jsdom';
+import {byPassHeaders, enableByPassProxy} from "../../utils/bypass";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   const url = req.query['url'] ?? [];
-  const readMode = (req.query['reader'] ?? 'false') === 'true';
+  let byPassProxy = (req.query['reader'] ?? 'false') === 'true';
   if (typeof url === 'string') {
-    const options = readMode ? {
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
-        'Referer': 'https://google.com'
-      }
-    } : {};
+    byPassProxy = enableByPassProxy(url);
+    const options = byPassProxy ? byPassHeaders() : {};
+
     const response = await fetch(url, options);
     let html = await response.text();
 
