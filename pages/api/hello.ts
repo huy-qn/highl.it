@@ -10,7 +10,13 @@ export default async function handler(
   const url = req.query['url'] ?? [];
   const readMode = (req.query['reader'] ?? 'false') === 'true';
   if (typeof url === 'string') {
-    const response = await fetch(url);
+    const options = readMode ? {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
+        'Referer': 'https://google.com'
+      }
+    } : {};
+    const response = await fetch(url, options);
     let html = await response.text();
 
     const parsedUrl = new URL(url);
@@ -35,12 +41,12 @@ export default async function handler(
     <script>window.__contentUrlHash = window.btoa('${url}');</script>
     <script src="/content-script.js"></script>`);
 
-    if (readMode) {
-      const doc = new JSDOM(html);
-      const article = new Readability(doc.window.document).parse();
-
-      html = `<h1>${article?.title ?? ''}</h1><br/><p></p>${article?.content ?? ''}`;
-    }
+    // if (readMode) {
+    //   const doc = new JSDOM(html);
+    //   const article = new Readability(doc.window.document).parse();
+    //
+    //   html = `<h1>${article?.title ?? ''}</h1><br/><p></p>${article?.content ?? ''}`;
+    // }
 
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
     res.send(html);

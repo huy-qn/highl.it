@@ -31,7 +31,9 @@ export const getHighlights = async (urlHash: string): Promise<HighlightValue | u
 
 export const setHighlights = async (urlHash: string, value: HighlightValue) => {
     const db = await DB();
-    let cursor = await db.transaction(TABLE_NAME, 'readwrite').store.openCursor();
+    const store = await db.transaction(TABLE_NAME, 'readwrite').store;
+    let cursor = await store.openCursor();
+    let updated = false;
     while (cursor) {
         if (cursor.key === urlHash) {
             const updateData = {
@@ -39,9 +41,13 @@ export const setHighlights = async (urlHash: string, value: HighlightValue) => {
                 ...value
             };
             cursor.update(updateData);
+            updated = true;
             break;
         }
         cursor = await cursor.continue();
+    }
+    if (!updated) {
+        store.add(value, urlHash);
     }
 };
 
