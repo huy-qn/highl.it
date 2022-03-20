@@ -6,16 +6,16 @@ import Script from "next/script";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const url = context.query['url'] as string;
-    // const content = await (await fetch(`http://localhost:3000/api/hello?url=${url}`)).text();
+    const reader = context.query['reader'] as string ?? 'false';
     return {
         props: {
             url,
-            // content
+            reader
         }
     }
 }
 
-const Viewer: NextPage = ({ url }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+const Viewer: NextPage = ({ url, reader }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
     return (
         <div className={styles.container}>
             <Head>
@@ -23,10 +23,12 @@ const Viewer: NextPage = ({ url }: InferGetServerSidePropsType<typeof getServerS
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <iframe className={styles.content} src={`/api/hello?url=${url}`}/>
+            <iframe className={styles.content} src={`/api/hello?url=${url}&reader=${reader}`}/>
             <div className={styles.toolbox}>
                 <a href={'#'}>← Back to original page</a>
-                <div className={styles.separator}></div>
+                <div className={styles.flexSeparator}/>
+                <a href={'#'}>Share ▵</a>
+                <span className={styles.separator}/>
                 <a href={'#'}>Go to library →</a>
             </div>
 

@@ -28,6 +28,12 @@
   padding: 0.5em 1em;
 }
 
-.separator {
+.flexSeparator {
   flex: 1;
+}
+
+.separator {
+  display: block;
+  border-left: 1px solid #004D40;
+  margin: 0 10px;
 }

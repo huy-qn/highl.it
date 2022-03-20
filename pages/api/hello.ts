@@ -6,7 +6,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const url = req.query['url'] ?? [];
+  let url = req.query['url'] ?? [];
   if (typeof url === 'string') {
     const byPassProxy = ((req.query['reader'] ?? 'false') === 'true') || enableByPassProxy(url);
     const options = byPassProxy ? byPassHeaders() : {};
