@@ -25,7 +25,7 @@ const Viewer: NextPage = ({ url, reader }: InferGetServerSidePropsType<typeof ge
 
             <iframe className={styles.content} src={`/api/hello?url=${url}&reader=${reader}`}/>
             <div className={styles.toolbox}>
-                <a href={'#'}>← Back to original page</a>
+                <a href={url}>← Back to original page</a>
                 <div className={styles.flexSeparator}/>
                 <a href={'#'}>Share ▵</a>
                 <span className={styles.separator}/>
